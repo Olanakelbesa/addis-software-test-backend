@@ -29,11 +29,5 @@ router.delete("/:id", async (req, res) => {
   res.json({ message: "Song deleted" });
 });
 
-// Delete all songs
-router.delete("/", async (req, res) => {
-  await Song.deleteMany({});
-  res.json({ message: "All songs deleted" });
-});
-
 
 module.exports = router;
