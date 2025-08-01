@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const songRoutes = require("./routes/songRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
 connectDB();
@@ -15,7 +16,10 @@ app.use(cors({
 }));
 
 app.use(express.json());
-
+app.get('/', (req, res) => {
+    res.send("Songlist");
+})
+app.use("/auth", authRoutes);
 app.use("/songs", songRoutes);
 
 const PORT = process.env.PORT || 5000;
