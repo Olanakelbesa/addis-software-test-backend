@@ -17,7 +17,7 @@ app.use(cors({
 
 app.use(express.json());
 app.get('/', (req, res) => {
-    res.send("Songlist");
+    res.send("Addis Songlist");
 })
 app.use("/auth", authRoutes);
 app.use("/songs", songRoutes);

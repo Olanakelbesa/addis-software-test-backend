@@ -2,7 +2,6 @@ const express = require("express");
 const Song = require("../models/Songs");
 const router = express.Router();
 
-
 router.get("/", async (req, res) => {
   const songs = await Song.find();
   res.json(songs);
@@ -18,7 +17,11 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { title, artist, year } = req.body;
-  const updatedSong = await Song.findByIdAndUpdate(id, { title, artist, year }, { new: true });
+  const updatedSong = await Song.findByIdAndUpdate(
+    id,
+    { title, artist, year },
+    { new: true }
+  );
   if (!updatedSong) return res.status(404).json({ message: "Song not found" });
   res.json(updatedSong);
 });
@@ -28,6 +31,5 @@ router.delete("/:id", async (req, res) => {
   await Song.findByIdAndDelete(id);
   res.json({ message: "Song deleted" });
 });
-
 
 module.exports = router;
